@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gridsome Games</title>
+    <meta name="description" content="Gridsome Games — Grid-based engineering, optimization, and incremental simulations.">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-hover: #334155;
+            --border: #334155;
+            --border-hover: #475569;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.15);
+            --reactor-green: #aff7b1;
+            --flux-purple: #c084fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            width: 100%;
+            flex: 1;
+        }
+
+        header {
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .tagline {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .game-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+        }
+
+        .card-top {
+            margin-bottom: 20px;
+        }
+
+        .game-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .game-status {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .game-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .game-desc {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .tags-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #cbd5e1;
+        }
+
+        .card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .play-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Coming Soon / Planned Card */
+        .game-card.placeholder {
+            border-style: dashed;
+            background: rgba(30, 41, 59, 0.3);
+            cursor: default;
+        }
+
+        .game-card.placeholder:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: var(--border);
+        }
+
+        .game-card.placeholder .game-status {
+            background: rgba(148, 163, 184, 0.15);
+            color: var(--text-secondary);
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="brand-badge">Indie Game Laboratory</span>
+            <h1>Gridsome Games</h1>
+            <p class="tagline">Grid-based simulations, engineering puzzles, and idle optimization systems.</p>
+        </header>
+
+        <div class="section-title">Games Catalog</div>
+
+        <div class="games-grid">
+            <!-- Game 1: Reactor Successor -->
+            <a href="./reactor-successor/" class="game-card">
+                <div class="card-top">
+                    <div class="game-icon-box">⚡</div>
+                    <span class="game-status">Playable v1.0</span>
+                    <h2 class="game-title">Reactor Successor</h2>
+                    <p class="game-desc">
+                        A browser-based reactor optimization puzzle. Balance fuel decay, manage 2D radiation diffusion, forge industrial alloys with smelters, and synthesize Quantum Flux.
+                    </p>
+                    <div class="tags-row">
+                        <span class="tag">Puzzle</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">Prestige</span>
+                        <span class="tag">Simulation</span>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <span class="play-link">Launch Game &rarr;</span>
+                </div>
+            </a>
+
+            <!-- Placeholder: Future Project -->
+            <div class="game-card placeholder">
+                <div class="card-top">
+                    <div class="game-icon-box" style="opacity: 0.5;">🧩</div>
+                    <span class="game-status">In Planning</span>
+                    <h2 class="game-title" style="color: var(--text-secondary);">Next Grid Concept</h2>
+                    <p class="game-desc">
+                        Another grid-based systems engineering simulation is currently in development.
+                    </p>
+                </div>
+                <div class="card-bottom">
+                    <span style="font-size: 0.85rem; color: #64748b;">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Gridsome Games. Hosted on GitHub Pages.</p>
+    </footer>
+</body>
+</html>
