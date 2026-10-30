@@ -1,0 +1,617 @@
+/*
+Describes the layout, definitions, colors, and sizes of the UI pieces.
+*/
+/* Global .hidden class just describes what hidden means, apparently. */
+.hidden {display: none !important;}
+body {
+    font-family: Arial, sans-serif;
+    background: #222;
+    color: white;
+    padding: 20px;
+}
+/* Defines visual parameters for the info row, further info pane parts below. */
+#infoRow {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+/* 
+* Description pane code
+*/
+/* Base panel styling common to both */
+.info-panel {
+    border: 1px solid #666;
+    background: #333;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 13px;
+    line-height: 1.4;
+}
+    /* 1. Compact Global Info: Fixed width, fixed height aligned with description pane */
+    #globalInfo {
+        width: 200px;
+        flex: 0 0 200px; /* Does not grow, does not shrink, prevents horizontal judder */
+        height: 210px;   /* Matches description pane height cleanly */
+        box-sizing: border-box;
+        border: 1px solid #666;
+        background: #333;
+        padding: 10px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+            .stat-subtext {
+            font-size: 12px;
+            color: #81c784;
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+
+    /* 2. Expanded Description Pane with Native Two-Column Flow */
+    #descriptionPane {
+        flex: 1;         /* Takes all remaining width */
+        height: 210px;   /* Fixed height to combat vertical judder */
+        overflow-y: auto;/* Fallback scrollbar only if content exceeds 2 columns */
+        box-sizing: border-box;
+        border: 1px solid #666;
+        background: #333;
+        padding: 10px 14px;
+        font-size: 13px;
+        line-height: 1.4;
+
+        /* Native CSS 2-column formatting */
+        column-count: 2;
+        column-gap: 24px;
+        column-rule: 1px solid #444; /* Subtle divider between columns */
+        column-fill: auto;
+    }
+
+    /* Ensure the title spans across both columns */
+    #descriptionPane h2 {
+        column-span: all;
+        margin: 0 0 6px 0;
+    }
+
+    /* Prevent requirement boxes and lists from breaking awkwardly across column boundaries */
+    #descriptionPane .unlock-info-box,
+    #descriptionPane ul {
+        break-inside: avoid;
+        margin-top: 0;
+    }
+    /* Prevent paragraphs and list bullets from being sliced in half across columns */
+    #descriptionPane p, #descriptionPane li {
+        break-inside: avoid;
+    }
+    /* Force specific logical sections (like Adjacency) to start fresh in Column 2. */
+    .column-break-before { break-before: column; }
+
+#descriptionPane p{
+    margin: 2px 0;
+}
+/* Removes the massive default margins from the description panes.
+Remember, margin works clockwise: top, right, bottom, left.*/
+#descriptionPane h2 {
+    margin: 0 0 4px 0;
+}
+
+#descriptionPane h3 {
+    break-after: avoid;
+    margin: 4px 0 2px 0;
+}
+/* Defines the gameLayout. Should look into what flex means in CSS. */
+#gameLayout {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+/* Description pane's definitions for upgrade/unlock requirements */
+.status-locked {
+    font-size: 0.75em;
+    color: #e57373;
+    vertical-align: middle;
+}
+
+.unlock-info-box {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    padding: 6px 8px;
+    margin: 4px 0;
+    border-radius: 4px;
+}
+
+.req-met {
+    color: #81c784;
+    font-weight: bold;
+}
+
+.req-unmet {
+    color: #e57373;
+    font-weight: bold;
+}
+
+.hint-unlock {
+    color: #81c784;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.hint-locked {
+    color: #aaa;
+    font-style: italic;
+    margin-top: 4px;
+}
+/*CSS for the auto-replace button*/
+#autoReplaceContainer {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #555;
+}
+#autoReplaceLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    user-select: none;
+}
+/* 
+* View Switcher Tabs
+*/
+#viewSwitcher {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+    .view-tab {
+        background: #333;
+        color: #aaa;
+        border: 1px solid #555;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 4px 4px 0 0;
+        transition: all 0.15s ease-in-out;
+    }
+
+    .view-tab:hover {
+        background: #444;
+        color: white;
+    }
+
+    .view-tab.active-tab {
+        background: #2a2a2a;
+        color: #aff7b1;
+        border-color: #666;
+        border-bottom: 2px solid #50b954;
+    }
+/* 
+* Component selector code
+*/
+#componentSelector {
+    width: 116px;
+    flex: 0 0 116px; /* Never grows, never shrinks */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-content: start;
+} 
+    /* Category row: horizontal sequence of component swatches */
+    .component-palette-row {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+    }
+    /* Describes the buttons in the component selector. */
+    #componentSelector button {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        margin: 0;
+        border: 1px solid #555;
+        border-radius: 3px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px; /* Sized for legible Unicode glyphs */
+        line-height: 1;
+        box-sizing: border-box;
+        transition: transform 0.05s ease, border-color 0.1s ease;
+    }
+    /* Shows which component in component selector is currently selected by the player. */
+    .selected-component {
+        box-shadow: 0 0 0 1px white;
+    }
+    /* Locked: muted background with centered lock icon */
+    .locked-component {
+        background-color: #333 !important;
+        color: #888;
+        border: 1px dashed #666 !important;
+        opacity: 0.6;
+    }
+
+    .locked-component:hover {
+        opacity: 1;
+        border-color: #aaa !important;
+    }
+
+    .unlockable-component {
+        border: 2px solid #50b954 !important;
+        color: #aff7b1;
+        background-color: #1e3d20 !important;
+        opacity: 1;
+        /* animation: unlockPulse 1.5s infinite alternate; */ /* Love the idea of this, but it's distracting the way it's implemented here. Maybe we can get a pulse or something upon unlock if there isn't one. I'll keep this here so I know it's possible. */
+    }
+    /* Interesting, this describes the unlock pulse immediately above. Could definitely come in handy for feedback on components working or not, very interesting. */
+    /* @keyframes unlockPulse {
+        from { box-shadow: 0 0 2px #50b954; }
+        to { box-shadow: 0 0 8px #aff7b1; }
+    } */
+    /* Desribes how to show the grid. Changing the px in columns has to align with tile code immediately below. */
+#grid {
+    display: grid;
+    grid-template-columns: repeat(5, 30px);
+    column-gap: 2px;
+    row-gap: 0px;
+}
+    /* Describes each tile in the grid. Closely related to the grid code above. */
+    .tile {
+        width: 30px;
+        height: 30px;
+        box-sizing: border-box; /* Added due to box-shifing bug: full rows of components shifted the box two pixels. */
+        border: 1px solid #666;
+        background: #444;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    /* Gives a nice little reaction for the player hovering over a tile. */
+    .tile:hover {
+        border-color: white;
+    }
+    /* Ghost tiles hint and badge definitions*/
+    .ghost-badge {
+        color: #ffd54f;
+        font-size: 0.8em;
+    }
+
+    .ghost-hint {
+        color: #ffd54f;
+        margin: 6px 0;
+    }
+    /* Specifically used in the description pane to gray out the hint.*/
+    .cancel-hint {
+        color: #aaa;
+    }
+
+    .pane-divider {
+        border: 0;
+        border-top: 1px solid #555;
+        margin: 6px 0;
+    }
+    /* Ghost tiles treated a little differently*/
+    .tile.tile-ghost {
+        opacity: 0.45;
+        border: 1px dashed #aaa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+    .tile.tile-ghost:hover {
+        opacity: 0.75;
+        border-color: #ffd54f;
+    }
+    /* Durability bar hopefully in each tile of the reactor. */
+    .durability-bar-container {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 6px;
+        background-color: #222;
+    }
+
+    .durability-bar {
+        height: 100%;
+        display: block;
+        background-color: lime;
+    }
+    /* Radiation Status Bar (Vertical, Right Side) definition.*/
+    .radiation-bar-container {
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        bottom: 2px;
+        width: 6px;
+        background-color: #222;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .radiation-bar{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: #77e6fd;
+        transition: height 0.1s linear;
+    }
+    /* This doesn't seem to do anything. */
+    .reactor {
+        background-color: limegreen;
+    }
+/* 
+* Upgrades View Layout & Cards
+*/
+#upgradesView {
+    width: 100%;
+}
+
+    #upgradesList {
+        display: flex;
+        flex-direction: row;
+        gap: 12px; /* Gap between columns */
+    }
+    /* Reserved placeholder slot for empty upgrade columns (prevents layout shift) */
+    .upgrade-column-empty {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+
+    .upgrade-btn-placeholder {
+        width: 44px;
+        height: 44px;
+        border: 1px dashed #555;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .upgrade-column {
+        display: flex;
+        flex-direction: column;
+        gap: 8px; /* Gap between upgrade buttons within a column */
+    }
+
+    .upgrade-btn {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        margin: 0;
+        background: #2a2a2a;
+        border: 2px solid #555;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: transform 0.05s ease, border-color 0.1s ease, background 0.1s ease;
+    }
+
+    .upgrade-btn:hover:not(:disabled) {
+        border-color: #fff !important;
+    }
+    /* Affordability & Level states */
+    .upgrade-btn.affordable {
+        border-color: #50b954;
+    }
+
+    .upgrade-btn.unaffordable {
+        opacity: 0.55;
+        border-color: #555;
+    }
+
+    .upgrade-btn.maxed {
+        border-color: #ffd54f;
+        cursor: default;
+        opacity: 0.85;
+    }
+
+    .upgrade-btn:disabled {
+        cursor: not-allowed;
+    }
+
+    /* Tiny level badge in the bottom-right corner */
+    .upgrade-lvl-badge {
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        font-size: 9px;
+        line-height: 1;
+        font-weight: bold;
+        color: #aff7b1;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 1px 2px;
+        border-radius: 2px;
+        pointer-events: none;
+    }
+
+    .upgrade-lvl-badge.maxed {
+        color: #ffd54f;
+    }
+
+    /* Target component swatch accent inside upgrade button */
+    .upgrade-component-swatch {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 8px;
+        height: 8px;
+        border-radius: 1px;
+        border: 1px solid rgba(0,0,0,0.5);
+        pointer-events: none;
+    }
+/* 
+* Help Panel
+*/
+.help-box {
+    background: #333;
+    border: 1px solid #666;
+    padding: 16px 20px;
+    max-width: 800px;
+}
+
+.help-box h2 {
+    margin: 0 0 4px 0;
+}
+
+#helpList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+    /* Individual Help Card */
+    .help-card {
+        background: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 4px;
+        padding: 12px 14px;
+    }
+
+    .help-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .help-card-title {
+        font-size: 15px;
+        font-weight: bold;
+        color: #fff;
+        margin: 0;
+    }
+
+    .help-tag {
+        font-size: 11px;
+        padding: 2px 6px;
+        border-radius: 3px;
+        background: #444;
+        color: #bbb;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .help-card p {
+        margin: 4px 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #ddd;
+    }
+
+    .help-card ul {
+        margin: 6px 0 2px 18px;
+        padding: 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #ccc;
+    }
+
+    /* Locked / Progressive Reveal Teaser Card */
+    .help-card-locked {
+        background: #252525;
+        border: 1px dashed #444;
+        opacity: 0.65;
+    }
+
+    .help-card-locked .help-card-title {
+        color: #888;
+    }
+
+    .help-card-locked .help-tag {
+        background: #3a2a2a;
+        color: #e57373;
+    }
+
+    .help-card-locked p {
+        color: #777;
+        font-style: italic;
+    }
+
+/* 
+* Options View Layout & Buttons
+*/
+#optionsView {
+    width: 100%;
+    max-width: 600px;
+}
+
+    .options-box {
+        background: #333;
+        border: 1px solid #666;
+        padding: 16px 20px;
+        border-radius: 4px;
+    }
+
+    .options-box h2 {
+        margin: 0 0 8px 0;
+        font-size: 16px;
+        color: #aff7b1;
+    }
+
+    .options-box p {
+        font-size: 13px;
+        color: #bbb;
+        margin: 0 0 12px 0;
+    }
+
+    .options-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .opt-btn {
+        background: #2a2a2a;
+        color: white;
+        border: 1px solid #666;
+        padding: 8px 16px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.15s ease;
+    }
+
+    .opt-btn:hover {
+        background: #444;
+        border-color: #aff7b1;
+    }
+
+    .opt-btn.btn-danger {
+        border-color: #e57373;
+        color: #e57373;
+    }
+
+    .opt-btn.btn-danger:hover {
+        background: #4a1c1c;
+        border-color: #ff5252;
+        color: #fff;
+    }
+
+    .options-divider {
+        border: 0;
+        border-top: 1px solid #444;
+        margin: 18px 0;
+    }
+
+    .save-status-text {
+        font-size: 12px;
+        color: #81c784;
+        font-style: italic;
+    }
+
+
+
+
+
+
+
+
+

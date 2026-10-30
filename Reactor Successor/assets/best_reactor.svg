@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" shape-rendering="geometricPrecision">
+  <!-- Main Plate: Base Color #136d16 -->
+  <rect x="0.5" y="0.5" width="29" height="29" rx="2" fill="#136d16" stroke="#082909" stroke-width="1"/>
+  
+  <!-- Recessed Heavy Machine Cavity -->
+  <rect x="2.5" y="2.5" width="25" height="20" rx="1" fill="#1b851f" stroke="#0a3b0d" stroke-width="0.8"/>
+  
+  <!-- 4 Heavy Corner Gussets / Reinforcement Brackets -->
+  <polygon points="1.5,1.5 6,1.5 1.5,6" fill="#082909"/>
+  <polygon points="28.5,1.5 24,1.5 28.5,6" fill="#082909"/>
+  <polygon points="1.5,21.5 6,21.5 1.5,17" fill="#082909"/>
+  <polygon points="28.5,21.5 24,21.5 28.5,17" fill="#082909"/>
+
+  <!-- Top Bus Manifold -->
+  <line x1="8" y1="4" x2="22" y2="4" stroke="#082909" stroke-width="1.2" stroke-linecap="round"/>
+  
+  <!-- Enlarged Quad-Core Fission Cluster (2x2 Assembly) -->
+  <!-- Top-Left -->
+  <rect x="6.5" y="5.5" width="7.2" height="7.2" rx="1.8" fill="#061c07" stroke="#0a3b0d" stroke-width="0.8"/>
+  <circle cx="10.1" cy="9.1" r="2.8" fill="#69ff77"/>
+  <circle cx="10.1" cy="9.1" r="1.2" fill="#ffffff"/>
+
+  <!-- Top-Right -->
+  <rect x="16.3" y="5.5" width="7.2" height="7.2" rx="1.8" fill="#061c07" stroke="#0a3b0d" stroke-width="0.8"/>
+  <circle cx="19.9" cy="9.1" r="2.8" fill="#69ff77"/>
+  <circle cx="19.9" cy="9.1" r="1.2" fill="#ffffff"/>
+
+  <!-- Bottom-Left -->
+  <rect x="6.5" y="13.5" width="7.2" height="7.2" rx="1.8" fill="#061c07" stroke="#0a3b0d" stroke-width="0.8"/>
+  <circle cx="10.1" cy="17.1" r="2.8" fill="#69ff77"/>
+  <circle cx="10.1" cy="17.1" r="1.2" fill="#ffffff"/>
+
+  <!-- Bottom-Right -->
+  <rect x="16.3" y="13.5" width="7.2" height="7.2" rx="1.8" fill="#061c07" stroke="#0a3b0d" stroke-width="0.8"/>
+  <circle cx="19.9" cy="17.1" r="2.8" fill="#69ff77"/>
+  <circle cx="19.9" cy="17.1" r="1.2" fill="#ffffff"/>
+
+  <!-- Central Magnetic Confinement Hub -->
+  <circle cx="15" cy="13.1" r="1.6" fill="#061c07" stroke="#34d142" stroke-width="0.6"/>
+  <circle cx="15" cy="13.1" r="0.7" fill="#ffffff"/>
+
+  <!-- Lower Bezel Channel -->
+  <rect x="2.5" y="23.5" width="25" height="4" rx="0.5" fill="#0c470e" stroke="#062107" stroke-width="0.6"/>
+</svg>

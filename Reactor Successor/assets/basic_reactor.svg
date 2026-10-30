@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" shape-rendering="geometricPrecision">
+  <!-- Main Plate: Base Color #aff7b1 -->
+  <rect x="0.5" y="0.5" width="29" height="29" rx="2" fill="#aff7b1" stroke="#2a5231" stroke-width="1"/>
+  
+  <!-- Recessed Inner Machine Cavity -->
+  <rect x="2.5" y="2.5" width="25" height="20" rx="1" fill="#c4fbd0" stroke="#488653" stroke-width="0.8"/>
+  
+  <!-- 4 Corner Bolted Reinforcements -->
+  <circle cx="4" cy="4" r="0.9" fill="#2d5e36"/>
+  <circle cx="26" cy="4" r="0.9" fill="#2d5e36"/>
+  <circle cx="4" cy="21" r="0.9" fill="#2d5e36"/>
+  <circle cx="26" cy="21" r="0.9" fill="#2d5e36"/>
+  
+  <!-- Side Thermal Cooling Fins (tightened for larger core) -->
+  <line x1="3" y1="9.5" x2="5.5" y2="9.5" stroke="#488653" stroke-width="0.9" stroke-linecap="round"/>
+  <line x1="3" y1="12.5" x2="5.5" y2="12.5" stroke="#488653" stroke-width="0.9" stroke-linecap="round"/>
+  <line x1="3" y1="15.5" x2="5.5" y2="15.5" stroke="#488653" stroke-width="0.9" stroke-linecap="round"/>
+
+  <line x1="24.5" y1="9.5" x2="27" y2="9.5" stroke="#488653" stroke-width="0.9" stroke-linecap="round"/>
+  <line x1="24.5" y1="12.5" x2="27" y2="12.5" stroke="#488653" stroke-width="0.9" stroke-linecap="round"/>
+  <line x1="24.5" y1="15.5" x2="27" y2="15.5" stroke="#488653" stroke-width="0.9" stroke-linecap="round"/>
+
+  <!-- Enlarged Central Reactor Vessel -->
+  <circle cx="15" cy="12.5" r="7.5" fill="#1b4224" stroke="#0e2413" stroke-width="1"/>
+  <!-- Substantial Mint Green Energy Core (Enlarged to r=5.8) -->
+  <circle cx="15" cy="12.5" r="5.8" fill="#58d975"/>
+  <circle cx="15" cy="12.5" r="3.2" fill="#aff7b1"/>
+  <circle cx="15" cy="12.5" r="1.5" fill="#ffffff"/>
+
+  <!-- Lower Bezel Channel (Clearance for 6px durability bar) -->
+  <rect x="2.5" y="23.5" width="25" height="4" rx="0.5" fill="#8dd895" stroke="#366b3f" stroke-width="0.6"/>
+</svg>

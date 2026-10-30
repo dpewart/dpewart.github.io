@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reactor Successor</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+    <!-- Top Heading -->
+    <h1>Reactor Successor</h1>
+
+    <div id="infoRow">
+        <div id="globalInfo">
+            <div id="energy">Energy: 0</div>
+            <div id="energyRate" class="stat-subtext">(+0.00/s)</div>
+            <div id="alloysContainer" class="hidden">
+                <div id="alloys">Alloys: 0</div>
+                <div id="alloyRate" class="stat-subtext">(+0.00/s)</div>
+            </div>
+           <div id="autoReplaceContainer" class="hidden">
+                <label id="autoReplaceLabel">
+                    <input type="checkbox" id="autoReplaceMasterToggle">
+                    <span>Auto-Replace (+50%)</span>
+                </label>
+            </div>
+        </div>
+
+        <div id="descriptionPane">
+        </div>
+    </div>
+    <!-- View Switcher -->
+    <div id="viewSwitcher">
+        <button id="tabReactor" class="view-tab active-tab">Reactor Grid</button>
+        <button id="tabUpgrades" class="view-tab">Upgrades</button>
+        <button id="tabOptions" class="view-tab">Options</button>
+        <button id="tabHelp" class="view-tab">Help</button>
+    </div>
+    <!-- View 1: Reactor Workspace -->
+    <div id="reactorView" class="view-container">
+        <div id="gameLayout">
+            <div id="componentSelector"></div>
+            <div id="grid"></div>
+        </div>
+    </div>
+    <!-- View 2: Global Upgrades Panel -->
+    <div id="upgradesView" class="view-container" style="display: none;">
+        <div id="upgradesList"></div>
+    </div>
+    <!-- View 3: Help Panel -->
+    <div id="helpView" class="view-container" style="display: none;">
+        <div class="help-box">
+            <h2>Reactor Operations Codex</h2>
+            <p class="stat-subtext">Operational guide and reactor reference.</p>
+            <div id="helpList"></div>
+        </div>
+    </div>
+    <!-- View 4: Options Panel -->
+    <div id="optionsView" class="view-container" style="display: none;">
+        <div class="options-box">
+            <h2>Game Persistence</h2>
+            <p>Your game automatically saves to your browser's local storage every 15 seconds.</p>
+            
+            <div class="options-row">
+                <button id="btnManualSave" class="opt-btn">Manual Save</button>
+                <span id="saveStatus" class="save-status-text"></span>
+            </div>
+
+            <hr class="options-divider">
+
+            <h2>Danger Zone</h2>
+            <p>Erase your browser save and restart from initial scratch.</p>
+            <button id="btnHardReset" class="opt-btn btn-danger">Hard Reset</button>
+        </div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+    <!-- At this point the upgrades view seems to make the componentSelector disappear as well. We'll see what I think of it. -->
+</body>
+</html>
+
+
+
+
+
